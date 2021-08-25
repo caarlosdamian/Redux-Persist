@@ -1,5 +1,5 @@
 import React from "react";
-
+import './input.css'
 const Input = ({
   label,
   value,
@@ -9,24 +9,23 @@ const Input = ({
   name,
   id,
   required,
-}) => {
-  return (
-    <div className="input-wrap">
-      <label htmlFor={id} className="input-label">
-        {label}
-      </label>
-      <input
-        type={type}
-        id={id}
-        required={required}
-        className="input"
-        placeholder={placeholder}
-        name={name}
-        onChange={habldeInput}
-        value={value}
-      />
-    </div>
-  );
-};
+}) => (
+  <div className="input-wrap">
+    <label htmlFor={id} className="input-label">
+      {label}
+    </label>
+    <input
+      type={type}
+      id={id}
+      required={required}
+      className="input"
+      placeholder={placeholder}
+      name={name}
+      onChange={habldeInput}
+      value={value}
+    />
+    <span className="input-grow "></span>
+  </div>
+);
 
 export default Input;
