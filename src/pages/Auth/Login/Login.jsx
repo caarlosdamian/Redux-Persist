@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { connect } from "react-redux";
 import Button from "../../../components/common/Button/Button";
 import Input from "../../../components/common/Input/Input";
+import { userSetDetails } from "../../../redux/user/userAction";
 import "./login.css";
 
-const Login = () => {
+const Login = ({ dispatchUserSetDetails }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
-    e.prventDefault();
+    e.preventDefault();
+    dispatchUserSetDetails({ userName, password, token: 1 });
   };
   return (
     <div className="login-wrap">
@@ -23,7 +26,7 @@ const Login = () => {
             name="username"
             habldeInput={(e) => setUserName(e.target.value)}
             value={userName}
-            type='text'
+            type="text"
           />
           <Input
             required
@@ -33,13 +36,19 @@ const Login = () => {
             name="password"
             habldeInput={(e) => setPassword(e.target.value)}
             value={password}
-            type='password'
+            type="password"
           />
-          <Button label='login' />
+          <Button label="login" />
         </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchUserSetDetails: (user) => dispatch(userSetDetails(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
